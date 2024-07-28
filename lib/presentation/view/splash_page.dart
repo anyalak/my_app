@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../main/home_page.dart';
+import '../main/root_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

@@ -53,8 +53,17 @@ class _RootPageState extends State<RootPage> {
           child: Image.asset('assets/images/bibimbap.png'),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
+      bottomNavigationBar: BottomNav(
+        currentIndex: _currentIndex,
+        onTap: onTabTapped,
+      ),
       body: _children[_currentIndex],
     );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }

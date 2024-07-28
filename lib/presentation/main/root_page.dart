@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:makeitll/presentation/main/home_page.dart';
 import 'package:makeitll/presentation/main/profile_page.dart' show ProfilePage;
+import 'package:makeitll/presentation/view/Chat/chat_page.dart';
+import 'package:makeitll/presentation/view/Favorit/favorit_page.dart';
+import 'package:makeitll/presentation/view/Setting/setting_page.dart';
 import 'package:makeitll/presentation/widgets/buttom_nav.dart';
 
 class RootPage extends StatefulWidget {
@@ -12,20 +16,8 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int _currentIndex = 0;
 
-  List<Widget> get _children => [
-        Center(
-          child: Text('Home'),
-        ),
-        Center(
-          child: Text('Like'),
-        ),
-        Center(
-          child: Text('Chat'),
-        ),
-        Center(
-          child: Text('Settings'),
-        )
-      ];
+  List<Widget> get _children =>
+      [HomePage(), FavoritPage(), ChatPage(), SettingPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +39,7 @@ class _RootPageState extends State<RootPage> {
             ),
           )
         ],
-        title: const Text('Home Page'),
+        title: Text(getTitle(_currentIndex)),
         leading: Padding(
           padding: const EdgeInsets.all(8),
           child: Image.asset('assets/images/bibimbap.png'),
@@ -65,5 +57,20 @@ class _RootPageState extends State<RootPage> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  String getTitle(int index) {
+    switch (index) {
+      case 0:
+        return 'Home';
+      case 1:
+        return 'Favorit';
+      case 2:
+        return 'Chat';
+      case 3:
+        return 'Setting';
+      default:
+        return 'Home';
+    }
   }
 }

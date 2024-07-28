@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:makeitll/presentation/main/profile_page.dart' show ProfilePage;
+import 'package:makeitll/presentation/widgets/buttom_nav.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RootPage extends StatefulWidget {
+  const RootPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RootPage> createState() => _RootPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RootPageState extends State<RootPage> {
+  int _currentIndex = 0;
+
+  List<Widget> get _children => [
+        Center(
+          child: Text('Home'),
+        ),
+        Center(
+          child: Text('Like'),
+        ),
+        Center(
+          child: Text('Chat'),
+        ),
+        Center(
+          child: Text('Settings'),
+        )
+      ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +53,8 @@ class _HomePageState extends State<HomePage> {
           child: Image.asset('assets/images/bibimbap.png'),
         ),
       ),
-      body: const Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('Welcome to the Home Page!'),
-        ]),
-      ),
+      bottomNavigationBar: BottomNav(),
+      body: _children[_currentIndex],
     );
   }
 }
